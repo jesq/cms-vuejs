@@ -19,12 +19,12 @@ const routes = [
     component: AddEmployee
   },
   {
-    path: '/edit/employee_id',
+    path: '/edit/:employee_id',
     name: 'edit-employee',
     component: EditEmployee
   },
   {
-    path: '/employee_id',
+    path: '/:employee_id',
     name: 'select-employee',
     component: SelectEmployee
   }

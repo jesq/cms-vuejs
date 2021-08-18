@@ -1,12 +1,12 @@
 <template>
     <div id="select-employee">
-        <h3>Main</h3>
+        <h3>select employee</h3>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'main',
+    name: 'select-employee',
     data () {
         return {
             
