@@ -20,6 +20,9 @@
     <router-link to="/" class="btn btn-secondary m-1">
         Back
     </router-link>
+    <button @click="deleteEmployee" class="btn btn-danger m-3">
+        Delete
+    </button>
     </div>
 </template>
 
@@ -68,6 +71,12 @@ export default {
                     this.emailAddress = doc.data().emailAddress
                 })
             })
+        },
+        deleteEmployee () {
+            if(confirm('Are you sure?')) {
+                db.collection('employees').doc(this.$route.params.employee_id).delete()
+                this.$router.push('/')
+            }
         }
     }
 }
