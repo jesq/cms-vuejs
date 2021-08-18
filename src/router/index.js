@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Main from '@/components/Main'
+import EmployeeTable from '@/components/EmployeeTable'
 import AddEmployee from '@/components/AddEmployee'
 import EditEmployee from '@/components/EditEmployee'
 import SelectEmployee from '@/components/SelectEmployee'
@@ -10,8 +10,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Main',
-    component: Main
+    name: 'EmployeeTable',
+    component: EmployeeTable
   },
   {
     path: '/add',
