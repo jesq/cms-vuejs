@@ -14,7 +14,12 @@
                 </thead>
                 <tbody v-for="employee in employees"
                 v-bind:key="employee.id">
-                    <td class="text-center">{{ employee.id }}</td>
+                    <td class="text-center">
+                        <router-link v-bind:to="{name: 'select-employee', 
+                        params: {employee_id: employee.id}}">
+                             {{ employee.id }}
+                        </router-link>
+                    </td>
                     <td class="text-center">{{ employee.firstName }}</td>
                     <td class="text-center">{{ employee.lastName }}</td>
                     <td class="text-center">{{ employee.gender }}</td>
