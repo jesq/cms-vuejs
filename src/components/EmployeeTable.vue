@@ -13,11 +13,11 @@
                     </tr>
                 </thead>
                 <tbody v-for="employee in employees"
-                v-bind:key="employee.id">
+                v-bind:key="employee.employee_id">
                     <td class="text-center">
                         <router-link v-bind:to="{name: 'select-employee', 
-                        params: {employee_id: employee.id}}">
-                             {{ employee.id }}
+                        params: {employee_id: employee.employee_id}}">
+                             {{ employee.employee_id }}
                         </router-link>
                     </td>
                     <td class="text-center">{{ employee.firstName }}</td>
@@ -50,13 +50,14 @@ export default {
         db.collection('employees').get().then (querySnapshot => { //gets employees from firestore and stores them
             querySnapshot.forEach(doc => {
                 const data = {
-                    'id': doc.id,
+                    'employee_id': doc.data().employee_id,
                     'firstName': doc.data().firstName,
                     'lastName': doc.data().lastName,
                     'gender': doc.data().gender,
                     'birthday': doc.data().birthday,
                     'emailAddress': doc.data().emailAddress
                 }
+                console.log(data)
                 this.employees.push(data)
             })
         })
