@@ -64,7 +64,7 @@ export default {
         addEmployee () {
             var docRef = db.collection('employees').doc()
             this.employee_id = docRef.id
-            db.collection('employees').add({
+            db.collection('employees').doc(this.employee_id).set({
                 employee_id: this.employee_id,
                 firstName: this.firstName,
                 lastName: this.lastName,

@@ -66,7 +66,6 @@ export default {
         .get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
                 next(vm => {
-                    vm.employee_id = doc.data().employee_id
                     vm.firstName = doc.data().firstName
                     vm.lastName = doc.data().lastName
                     vm.gender = doc.data().gender
@@ -82,16 +81,31 @@ export default {
     methods: {
         fetchData () {
             db.collection('employees').where('employee_id', '==', this.$route.params.employee_id).get()
-            .then(querySnapshot => {
-                querySnapshot.forEach(doc => {
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
                     this.employee_id = doc.data().employee_id
                     this.firstName = doc.data().firstName
                     this.lastName = doc.data().lastName
                     this.gender = doc.data().gender
                     this.birthday = doc.data().birthday
                     this.emailAddress = doc.data().emailAddress
+                    console.log(this.firstName);
                 })
             })
+        },
+        updateEmployee () {
+            var employeeRef = db.collection('employees').doc(this.$route.params.employee_id)
+            employeeRef.set({
+            firstName: this.firstName,
+            lastName: this.lastName,
+            gender: this.gender,
+            birthday: this.birthday,
+            emailAddress: this.emailAddress
+        }, { merge: true })
+        .then(() => {
+            this.$router.push({name: 'select-employee', 
+            params: {employee_id: this.$route.params.employee_id}})
+        })
         }
     }
 }

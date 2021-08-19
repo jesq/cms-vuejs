@@ -57,7 +57,6 @@ export default {
                     'birthday': doc.data().birthday,
                     'emailAddress': doc.data().emailAddress
                 }
-                console.log(data)
                 this.employees.push(data)
             })
         })
