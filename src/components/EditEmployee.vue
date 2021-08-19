@@ -111,9 +111,6 @@ export default {
         });
       });
   },
-  watch: {
-    '$route': "fetchData",
-  },
   methods: {
     updateEmployee() {
       var employeeRef = db
