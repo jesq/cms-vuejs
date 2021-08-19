@@ -112,25 +112,9 @@ export default {
       });
   },
   watch: {
-    $route: "fetchData",
+    '$route': "fetchData",
   },
   methods: {
-    fetchData() {
-      db.collection("employees")
-        .where("employee_id", "==", this.$route.params.employee_id)
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.employee_id = doc.data().employee_id;
-            this.firstName = doc.data().firstName;
-            this.lastName = doc.data().lastName;
-            this.gender = doc.data().gender;
-            this.birthday = doc.data().birthday;
-            this.emailAddress = doc.data().emailAddress;
-            console.log(this.firstName);
-          });
-        });
-    },
     updateEmployee() {
       var employeeRef = db
         .collection("employees")

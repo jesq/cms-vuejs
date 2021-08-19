@@ -19,7 +19,7 @@
       <router-link
         v-bind:to="{
           name: 'edit-employee',
-          params: { employee_id: employee_id },
+          params: { employee_id: this.employee_id },
         }"
         class="btn-floating
             btn-large blue"
@@ -62,29 +62,11 @@ export default {
         });
       });
   },
-  watch: {
-    $route: "fetchData",
-  },
   methods: {
-    fetchData() {
-      db.collection("employees")
-        .where("employee_id", "==", this.$route.params.employee_id)
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.employee_id = doc.data().employee_id;
-            this.firstName = doc.data().firstName;
-            this.lastName = doc.data().lastName;
-            this.gender = doc.data().gender;
-            this.birthday = doc.data().birthday;
-            this.emailAddress = doc.data().emailAddress;
-          });
-        });
-    },
     deleteEmployee() {
       if (confirm("Are you sure?")) {
         db.collection("employees")
-          .doc(this.$route.params.employee_id)
+          .doc(this.employee_id)
           .delete();
         this.$router.push("/");
       }
