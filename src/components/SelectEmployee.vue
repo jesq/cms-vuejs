@@ -23,6 +23,13 @@
     <button @click="deleteEmployee" class="btn btn-danger m-3">
         Delete
     </button>
+    <div class="fixed-action-btn">
+            <router-link v-bind:to="{name: 'edit-employee',
+             params: {employee_id: employee_id}}" class="btn-floating
+            btn-large blue">
+                <i class="fas fa-edit"></i>
+            </router-link>
+        </div>
     </div>
 </template>
 
