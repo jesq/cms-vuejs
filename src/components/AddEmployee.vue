@@ -19,7 +19,6 @@
                     Gender
                 </label>
                 <select id="gender" v-model="gender" required class="form-select text-white bg-light">
-                    <option selected>Select one</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
@@ -48,11 +47,33 @@
 </template>
 
 <script>
+import db from './firebaseInit'
 export default {
     name: 'add-employee',
     data () {
         return {
-            
+            employee_id: null,
+            firstName: null,
+            lastName: null,
+            gender: null,
+            birthday: null,
+            emailAddress: null
+        }
+    },
+    methods: {
+        addEmployee () {
+            var docRef = db.collection('employees').doc()
+            this.employee_id = docRef.id
+            db.collection('employees').add({
+                employee_id: this.employee_id,
+                firstName: this.firstName,
+                lastName: this.lastName,
+                gender: this.gender,
+                birthday: this.birthday,
+                emailAddress: this.emailAddress
+            })
+            .then(this.$router.push('/'))
+            .catch(error => console.log(error))
         }
     }
 }
